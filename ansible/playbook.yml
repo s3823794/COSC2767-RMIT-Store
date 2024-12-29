@@ -1,0 +1,22 @@
+### 3. Configuration Management
+
+Use Ansible to manage server configurations. Below is an example Ansible playbook.
+
+- hosts: all
+  become: yes
+  tasks:
+    - name: Ensure Docker is installed
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Ensure Docker Compose is installed
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Pull latest Docker images
+      command: docker-compose pull
+
+    - name: Start Docker containers
+      command: docker-compose up -d

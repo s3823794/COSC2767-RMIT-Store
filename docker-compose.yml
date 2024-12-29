@@ -1,0 +1,36 @@
+version: "3.9"
+
+services:
+  server:
+    container_name: server-backend
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: sitloboi2012/rmit-store-server:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./server/.env.production  # Production-specific environment variables
+    restart: always
+    networks:
+      - rmit-store-network
+
+  client:
+    container_name: client-frontend
+    depends_on:
+      - server
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: sitloboi2012/rmit-store-client:latest
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./client/.env.production  # Production-specific environment variables
+    restart: always
+    networks:
+      - rmit-store-network
+
+networks:
+  rmit-store-network:
+    driver: bridge
