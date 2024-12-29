@@ -25,6 +25,8 @@ services:
     image: sitloboi2012/rmit-store-client:latest
     ports:
       - "8080:80"
+    volumes:
+      - ./client/nginx.env:/etc/nginx/nginx.env  # Mount the nginx.env file
     env_file:
       - ./client/.env.production  # Production-specific environment variables
     restart: always

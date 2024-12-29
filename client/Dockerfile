@@ -10,6 +10,9 @@ COPY package*.json ./
 # Install dependencies
 RUN npm ci --legacy-peer-deps
 
+#ARG API_URL
+#ENV REACT_APP_API_URL=$API_URL
+
 # Copy the rest of the application code
 COPY . .
 
