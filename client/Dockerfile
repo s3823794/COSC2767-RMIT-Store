@@ -4,7 +4,7 @@ FROM node:18-alpine AS build
 # Set the working directory
 WORKDIR /app
 
-# Copy only package files first for better caching
+# Copy only package files first to leverage Docker caching
 COPY package*.json ./
 
 # Install dependencies
@@ -23,7 +23,7 @@ FROM nginx:alpine AS production
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Expose the port Nginx serves on
-EXPOSE 8080
+EXPOSE 80
 
 # Start Nginx
 CMD ["nginx", "-g", "daemon off;"]

@@ -5,7 +5,7 @@ services:
     container_name: server-backend
     build:
       context: ./server
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  # Production Dockerfile
     image: sitloboi2012/rmit-store-server:latest
     ports:
       - "3000:3000"
@@ -21,10 +21,10 @@ services:
       - server
     build:
       context: ./client
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile  # Production Dockerfile
     image: sitloboi2012/rmit-store-client:latest
     ports:
-      - "8080:8080"
+      - "8080:80"
     env_file:
       - ./client/.env.production  # Production-specific environment variables
     restart: always

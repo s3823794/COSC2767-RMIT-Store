@@ -22,7 +22,7 @@ const config = {
   mode: 'production',
   output: {
     // Output directory for bundled files
-    path: path.join(CURRENT_WORKING_DIR, '/dist'),
+    path: path.join(CURRENT_WORKING_DIR, '/build'),
     filename: 'js/[name].[hash].js',
     publicPath: '/'
   },

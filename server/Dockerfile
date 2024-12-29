@@ -4,7 +4,7 @@ FROM node:18-alpine
 # Set the working directory
 WORKDIR /app
 
-# Copy only package files first for better caching
+# Copy only package files first to leverage Docker caching
 COPY package*.json ./
 
 # Install only production dependencies
@@ -16,7 +16,7 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 3000
 
-# Use non-root user for security
+# Use a non-root user for enhanced security
 USER node
 
 # Start the application
