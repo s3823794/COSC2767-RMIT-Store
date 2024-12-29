@@ -11,13 +11,11 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # Copy the rest of the application code
-COPY . .
+COPY [".", "./"]
+COPY ["./.env.production", "./.env"]
 
 # Expose the port the app runs on
 EXPOSE 3000
-
-# Use a non-root user for enhanced security
-USER node
 
 # Start the application
 CMD ["npm", "run", "start", "--", "--host", "0.0.0.0"]
